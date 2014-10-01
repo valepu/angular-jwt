@@ -1,6 +1,7 @@
 {
   "name": "angular-jwt",
   "version": "0.0.1",
+  "description": "Library to help you work with JWTs on AngularJS",
   "authors": [
     {
       "name": "Martin Gontovnikas",
