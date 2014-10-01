@@ -6,6 +6,11 @@ describe('interceptor', function() {
     module('angular-jwt.interceptor');
   });
 
+  afterEach(inject(function($httpBackend) {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  }));
+
 
   it('should intercept requests when added to $httpProvider.interceptors and set token', function (done) {
     module( function ($httpProvider, jwtInterceptorProvider) {
