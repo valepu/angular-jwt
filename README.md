@@ -2,6 +2,22 @@
 
 This library will help you work with JWTs. It's comprehended of 2 basic services
 
+## Installing it
+
+You have several options:
+
+````bash
+bower install angular-jwt
+````
+
+````bash
+npm install angular-jwt
+````
+
+````html
+<script type="text/javascript" src="https://rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+````
+
 ## jwtHelper
 
 jwtHelper will take care of helping you decode the token and check its expiration date.
