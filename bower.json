@@ -1,13 +1,15 @@
 {
   "name": "angular-jwt",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
     {
       "name": "Martin Gontovnikas",
       "email": "martin@gon.to"
     }
   ],
-  "main": ["dist/angular-jwt.js"],
+  "main": [
+    "dist/angular-jwt.js"
+  ],
   "ignore": [
     "src",
     "test",
