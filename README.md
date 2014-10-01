@@ -33,7 +33,7 @@ function Controller(jwtHelper) {
 
 ### More examples
 
-You can see some more examples of how this works in [the tests]()
+You can see some more examples of how this works in [the tests](https://github.com/auth0/angular-jwt/blob/master/test/unit/angularJwt/services/jwtSpec.js)
 
 ## jwtInterceptor
 
@@ -93,7 +93,7 @@ function Controller($http) {
 
 ### More examples
 
-You can see some more examples of how this works in [the tests]()
+You can see some more examples of how this works in [the tests](https://github.com/auth0/angular-jwt/blob/master/test/unit/angularJwt/services/interceptorSpec.js)
 
 ## Contributing
 
