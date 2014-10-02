@@ -114,6 +114,10 @@ angular.module('app', [])
 
 You can see some more examples of how this works in [the tests](https://github.com/auth0/angular-jwt/blob/master/test/unit/angularJwt/services/interceptorSpec.js)
 
+## Usages
+
+This library is used in [auth0-angular](https://github.com/auth0/auth0-angular
+
 ## Contributing
 
 Just clone the repo, run `npm install`, `bower install` and then `gulp` to work :).
