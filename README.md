@@ -25,7 +25,7 @@ jwtHelper will take care of helping you decode the token and check its expiratio
 ### Decoding the token
 
 ````js
-angular.module('app', [])
+angular.module('app', ['angular-jwt'])
 .controller('Controller', function Controller(jwtHelper) {
   var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';  
 
@@ -35,7 +35,7 @@ angular.module('app', [])
 ### Getting the token expiration date
 
 ````js
-angular.module('app', [])
+angular.module('app', ['angular-jwt'])
 .controller('Controller', function Controller(jwtHelper) {
   var date = jwtHelper.getTokenExpirationDate(expToken);
 })
@@ -44,7 +44,7 @@ angular.module('app', [])
 ### Checking if token is expired
 
 ````js
-angular.module('app', [])
+angular.module('app', ['angular-jwt'])
 .controller('Controller', function Controller(jwtHelper) {
   var bool = jwtHelper.isTokenExpired(expToken);
 })
@@ -61,7 +61,7 @@ JWT interceptor will take care of sending the JWT in every request.
 ### Basic usage
 
 ````js
-angular.module('app', [])
+angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
   jwtInterceptorProvider.tokenGetter = function() {
     return localStorage.getItem('id_token');
@@ -83,7 +83,7 @@ angular.module('app', [])
 As sometimes we need to get first the `id_token` in order to send it, we can return a promise in the `tokenGetter`. Let's see for example how we'd use a `refresh_token`
 
 ````js
-angular.module('app', [])
+angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
   jwtInterceptorProvider.tokenGetter = function(jwtHelper, $http) {
     var idToken = localStorage.getItem('id_token');
