@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
+    ngAnnotate = require('gulp-ng-annotate'),
     sourceFiles = [
       'src/angularJwt/angularJwt.prefix',
       'src/angularJwt/angularJwt.js',
@@ -15,6 +16,7 @@ var gulp = require('gulp'),
 gulp.task('build', function() {
   gulp.src(sourceFiles)
     .pipe(concat('angular-jwt.js'))
+    .pipe(ngAnnotate())
     .pipe(gulp.dest('./dist/'))
     .pipe(uglify())
     .pipe(rename('angular-jwt.min.js'))
@@ -60,3 +62,4 @@ gulp.task('test-dist-minified', function (done) {
 });
 
 gulp.task('default', ['test-src', 'build']);
+gulp.task('dist', ['test-dist-minified', 'test-dist-concatenated']);

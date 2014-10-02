@@ -23,7 +23,7 @@ angular.module('angular-jwt',
 
     var config = this;
 
-    this.$get = function ($q, $injector) {
+    this.$get = ["$q", "$injector", function ($q, $injector) {
       return {
         request: function (request) {
           if (request.skipAuthorization) {
@@ -53,7 +53,7 @@ angular.module('angular-jwt',
           return $q.reject(response);
         }
       };
-    };
+    }];
   });
 
  angular.module('angular-jwt.jwt', [])
