@@ -63,7 +63,7 @@ JWT interceptor will take care of sending the JWT in every request.
 ````js
 angular.module('app', [])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function(localStorage) {
+  jwtInterceptorProvider.tokenGetter = function() {
     return localStorage.getItem('id_token');
   }
   $httpProvider.interceptors.push('jwtInterceptor');
@@ -85,7 +85,7 @@ As sometimes we need to get first the `id_token` in order to send it, we can ret
 ````js
 angular.module('app', [])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function(localStorage, jwtHelper) {
+  jwtInterceptorProvider.tokenGetter = function(jwtHelper) {
     var idToken = localStorage.getItem('id_token');
     var refreshToken = localStorage.getItem('refresh_token');
     if (jwtHelper.isTokenExpired(idToken)) {
