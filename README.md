@@ -85,12 +85,17 @@ As sometimes we need to get first the `id_token` in order to send it, we can ret
 ````js
 angular.module('app', [])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function(jwtHelper) {
+  jwtInterceptorProvider.tokenGetter = function(jwtHelper, $http) {
     var idToken = localStorage.getItem('id_token');
     var refreshToken = localStorage.getItem('refresh_token');
     if (jwtHelper.isTokenExpired(idToken)) {
       // This is a promise of a JWT id_token
-      return auth.refreshToken(refreshToken).then(function(id_token) {
+      return $http({
+        url: '/delegation',
+        // This makes it so that this request doesn't send the JWT
+        skipAuthorization: true,
+        method: 'POST'
+      }).then(function(id_token) {
         localStorage.setItem('id_token', id_token);
         return id_token;
       });
