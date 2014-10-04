@@ -9,7 +9,7 @@
 
     var config = this;
 
-    this.$get = function ($q, $injector) {
+    this.$get = function ($q, $injector, $rootScope) {
       return {
         request: function (request) {
           if (request.skipAuthorization) {

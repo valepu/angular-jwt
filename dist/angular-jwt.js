@@ -23,7 +23,7 @@ angular.module('angular-jwt',
 
     var config = this;
 
-    this.$get = ["$q", "$injector", function ($q, $injector) {
+    this.$get = ["$q", "$injector", "$rootScope", function ($q, $injector, $rootScope) {
       return {
         request: function (request) {
           if (request.skipAuthorization) {
