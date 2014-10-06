@@ -78,7 +78,7 @@ angular.module('app', ['angular-jwt'])
 }
 ````
 
-### Skipping authentication
+### Not sending the JWT for specific requests
 
 ````js
 angular.module('app', ['angular-jwt'])
@@ -92,7 +92,7 @@ angular.module('app', ['angular-jwt'])
   // This request will NOT send the token as it has skipAuthentication
   $http({
     url: '/hola',
-    skipAuthentication: true
+    skipAuthorization: true
     method: 'GET'
   });
 }
