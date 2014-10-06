@@ -1,4 +1,10 @@
 
+0.0.4 / 2014-10-06
+==================
+
+  * $http config is now sent as `config` to the tokenGetter function.
+  * Update README.md
+
 0.0.3 / 2014-10-04
 ==================
 
