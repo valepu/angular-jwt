@@ -1,6 +1,6 @@
 # angular-jwt
 
-This library will help you work with JWTs. It's comprehended of 2 basic services
+This library will help you work with [JWTs](http://jwt.io/).
 
 ## Installing it
 
