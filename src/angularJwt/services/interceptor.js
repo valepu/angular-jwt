@@ -22,7 +22,9 @@
             return request;
           }
 
-          var tokenPromise = $q.when($injector.invoke(config.tokenGetter));
+          var tokenPromise = $q.when($injector.invoke(config.tokenGetter, this, {
+            config: request
+          }));
 
           return tokenPromise.then(function(token) {
             if (token) {
