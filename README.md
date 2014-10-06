@@ -78,6 +78,50 @@ angular.module('app', ['angular-jwt'])
 }
 ````
 
+### Skipping authentication
+
+````js
+angular.module('app', ['angular-jwt'])
+.config(function Config($httpProvider, jwtInterceptorProvider) {
+  jwtInterceptorProvider.tokenGetter = function() {
+    return localStorage.getItem('id_token');
+  }
+  $httpProvider.interceptors.push('jwtInterceptor');
+})
+.controller('Controller', function Controller($http) {
+  // This request will NOT send the token as it has skipAuthentication
+  $http({
+    url: '/hola',
+    skipAuthentication: true
+    method: 'GET'
+  });
+}
+````
+
+### Sending different tokens based on URLs
+
+````js
+angular.module('app', ['angular-jwt'])
+.config(function Config($httpProvider, jwtInterceptorProvider) {
+  jwtInterceptorProvider.tokenGetter = function(config) {
+    if (config.url.indexOf('http://auth0.com') === 0) {
+      return localStorage.getItem('auth0.id_token');
+    } else {
+      return localStorage.getItem('id_token');
+    }
+  }
+  $httpProvider.interceptors.push('jwtInterceptor');
+})
+.controller('Controller', function Controller($http) {
+  // This request will send the auth0.id_token since URL matches
+  $http({
+    url: 'http://auth0.com/hola',
+    skipAuthentication: true
+    method: 'GET'
+  });
+}
+````
+
 ### Using promises on the `tokenGetter`: Refresh Token example
 
 As sometimes we need to get first the `id_token` in order to send it, we can return a promise in the `tokenGetter`. Let's see for example how we'd use a `refresh_token`
