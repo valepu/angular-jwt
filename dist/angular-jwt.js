@@ -105,6 +105,10 @@ angular.module('angular-jwt',
     };
 
     this.isTokenExpired = function(token) {
+      
+      if (!token)
+        return true;
+
       var d = this.getTokenExpirationDate(token);
 
       if (!d) {
