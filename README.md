@@ -146,7 +146,8 @@ angular.module('app', ['angular-jwt'])
         // This makes it so that this request doesn't send the JWT
         skipAuthorization: true,
         method: 'POST'
-      }).then(function(id_token) {
+      }).then(function(response) {
+        var id_token = response.data.id_token;
         localStorage.setItem('id_token', id_token);
         return id_token;
       });
