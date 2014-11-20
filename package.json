@@ -7,9 +7,9 @@
     "email": "martin@gon.to"
   },
   "dependencies": {
-    "karma-mocha-reporter": "^0.3.1"
   },
   "devDependencies": {
+    "karma-mocha-reporter": "^0.3.1",
     "chai": "^1.9.1",
     "chai-jquery": "^1.2.3",
     "gulp": "^3.8.7",
