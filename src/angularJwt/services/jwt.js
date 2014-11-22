@@ -2,7 +2,7 @@
   .service('jwtHelper', function() {
 
     this.urlBase64Decode = function(str) {
-      var output = str.replace('-', '+').replace('_', '/');
+      var output = str.replace(/-/g, '+').replace(/_/g, '/');
       switch (output.length % 4) {
         case 0: { break; }
         case 2: { output += '=='; break; }

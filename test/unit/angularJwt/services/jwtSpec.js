@@ -14,6 +14,13 @@ describe('jwt', function() {
       expect(token.name).to.equal('John Doe');
     }));
 
+    var multipleUrlCharactersToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZWxsbO-jv2xsbO-jvyIsImFkbWluIjp0cnVlfQ.NCPM3vNwuvJGMIjR0csEFQDrSLcjm5P7ORumVq4ezmo';
+    it('should correctly decode tokens with multiple URL-safe characters', inject(function (jwtHelper) {
+      var token = jwtHelper.decodeToken(multipleUrlCharactersToken);
+      
+      expect(token.name).to.equal('John Doelllï£¿lllï£¿');
+    }));
+
     it('should return no expiration', inject(function (jwtHelper) {
         var date = jwtHelper.getTokenExpirationDate(infiniteToken);
 
