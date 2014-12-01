@@ -171,6 +171,18 @@ angular.module('app', ['angular-jwt'])
 
 You can see some more examples of how this works in [the tests](https://github.com/auth0/angular-jwt/blob/master/test/unit/angularJwt/services/interceptorSpec.js)
 
+## FAQ
+
+### I have minification problems with angular-jwt in production. What's going on?
+
+When you're using the `tokenGetter` function, it's then called with the injector. `ngAnnotate` doesn't automatically detect that this function receives services as parameters, therefore you must either annotate this method for `ngAnnotate` to know, or use it like follows: 
+
+````js
+jwtInterceptorProvider.tokenGetter = ['store', '$http', function(store, $http) {
+  ...
+}];
+````
+
 ## Usages
 
 This library is used in [auth0-angular](https://github.com/auth0/auth0-angular)
