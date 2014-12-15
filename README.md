@@ -70,9 +70,11 @@ JWT interceptor will take care of sending the JWT in every request.
 ````js
 angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function() {
+  // Please note we're annotating the function so that the $injector works when the file is minified
+  jwtInterceptorProvider.tokenGetter = ['myService', function(myService) {
     return localStorage.getItem('id_token');
-  }
+  }];
+  
   $httpProvider.interceptors.push('jwtInterceptor');
 })
 .controller('Controller', function Controller($http) {
@@ -90,9 +92,11 @@ angular.module('app', ['angular-jwt'])
 ````js
 angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function() {
+  // Please note we're annotating the function so that the $injector works when the file is minified
+  jwtInterceptorProvider.tokenGetter = ['myService', function(myService) {
     return localStorage.getItem('id_token');
-  }
+  }];
+  
   $httpProvider.interceptors.push('jwtInterceptor');
 })
 .controller('Controller', function Controller($http) {
