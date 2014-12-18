@@ -129,7 +129,7 @@ angular.module('app', ['angular-jwt'])
   // This request will send the auth0.id_token since URL matches
   $http({
     url: 'http://auth0.com/hola',
-    skipAuthentication: true
+    skipAuthorization: true
     method: 'GET'
   });
 }
