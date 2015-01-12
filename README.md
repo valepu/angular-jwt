@@ -151,7 +151,8 @@ angular.module('app', ['angular-jwt'])
         url: '/delegation',
         // This makes it so that this request doesn't send the JWT
         skipAuthorization: true,
-        method: 'POST'
+        method: 'POST',
+		data: { 'grant_type=refresh_token&refresh_token=' + refreshToken }
       }).then(function(response) {
         var id_token = response.data.id_token;
         localStorage.setItem('id_token', id_token);
