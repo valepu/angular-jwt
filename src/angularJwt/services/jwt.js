@@ -11,7 +11,7 @@
           throw 'Illegal base64url string!';
         }
       }
-      return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
+      return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
 
 
