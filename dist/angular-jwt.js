@@ -72,7 +72,7 @@ angular.module('angular-jwt',
         }
       }
       // return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
-      return decodeURIComponent(escape(atob(output)))
+      return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
 
 
