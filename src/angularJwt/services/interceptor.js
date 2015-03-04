@@ -1,6 +1,7 @@
  angular.module('angular-jwt.interceptor', [])
   .provider('jwtInterceptor', function() {
 
+    this.urlParam = null;
     this.authHeader = 'Authorization';
     this.authPrefix = 'Bearer ';
     this.tokenGetter = function() {
@@ -16,10 +17,18 @@
             return request;
           }
 
-          request.headers = request.headers || {};
-          // Already has an Authorization header
-          if (request.headers[config.authHeader]) {
-            return request;
+          if (config.urlParam) {
+            request.params = request.params || {};
+            // Already has the token in the url itself
+            if (request.params[config.urlParam]) {
+              return request;
+            }
+          } else {
+            request.headers = request.headers || {};
+            // Already has an Authorization header
+            if (request.headers[config.authHeader]) {
+              return request;
+            }
           }
 
           var tokenPromise = $q.when($injector.invoke(config.tokenGetter, this, {
@@ -28,7 +37,11 @@
 
           return tokenPromise.then(function(token) {
             if (token) {
-              request.headers[config.authHeader] = config.authPrefix + token;
+              if (config.urlParam) {
+                request.params[config.urlParam] = token;
+              } else {
+                request.headers[config.authHeader] = config.authPrefix + token;
+              }
             }
             return request;
           });

@@ -74,4 +74,27 @@ describe('interceptor', function() {
     });
 
   });
+
+  it('should add the token to the url params when the configuration option is set', function (done) {
+    module( function ($httpProvider, jwtInterceptorProvider) {
+      jwtInterceptorProvider.urlParam = 'access_token';
+      jwtInterceptorProvider.tokenGetter = function() {
+        return 123;
+      }
+      $httpProvider.interceptors.push('jwtInterceptor');
+    });
+
+    inject(function ($http, $httpBackend) {
+        $http({url: '/hello'}).success(function (data) {
+          expect(data).to.be.equal('hello');
+          done();
+        });
+
+        $httpBackend.expectGET('/hello?access_token=123', function (headers) {
+          return headers.Authorization === undefined;
+        }).respond(200, 'hello');
+        $httpBackend.flush();
+    });
+
+  });
 });
