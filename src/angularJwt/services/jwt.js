@@ -34,7 +34,7 @@
       var decoded;
       decoded = this.decodeToken(token);
 
-      if(!decoded.exp) {
+      if(typeof decoded.exp === "undefined") {
         return null;
       }
 
@@ -47,7 +47,7 @@
     this.isTokenExpired = function(token, offsetSeconds) {
       var d = this.getTokenExpirationDate(token);
       offsetSeconds = offsetSeconds || 0;
-      if (!d) {
+      if (d === null) {
         return false;
       }
 
