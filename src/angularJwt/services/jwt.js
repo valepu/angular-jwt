@@ -44,14 +44,14 @@
       return d;
     };
 
-    this.isTokenExpired = function(token) {
+    this.isTokenExpired = function(token, offsetSeconds) {
       var d = this.getTokenExpirationDate(token);
-
+      offsetSeconds = offsetSeconds || 0;
       if (!d) {
         return false;
       }
 
       // Token expired?
-      return !(d.valueOf() > new Date().valueOf());
+      return !(d.valueOf() > (new Date().valueOf() + (offsetSeconds * 1000)));
     };
   });
