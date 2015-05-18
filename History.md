@@ -1,4 +1,13 @@
 
+0.0.8 / 2015-05-18
+==================
+
+  * Added new dist
+  * Merge pull request #47 from aaronroberson/master
+  * Added support for Browserify/Webpack
+  * Merge pull request #41 from christopherthielen/master
+  * Add a parameter `offsetSeconds` to isTokenExpired function as a "fudge-factor" in the computation.
+
 0.0.7 / 2015-04-07
 ==================
 
