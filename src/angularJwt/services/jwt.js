@@ -1,5 +1,5 @@
  angular.module('angular-jwt.jwt', [])
-  .service('jwtHelper', function() {
+  .service('jwtHelper', function($window) {
 
     this.urlBase64Decode = function(str) {
       var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -11,7 +11,7 @@
           throw 'Illegal base64url string!';
         }
       }
-      return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
+      return $window.decodeURIComponent(escape($window.atob(output))); //polyfill https://github.com/davidchambers/Base64.js
     }
 
 
@@ -27,12 +27,11 @@
         throw new Error('Cannot decode the token');
       }
 
-      return JSON.parse(decoded);
+      return angular.fromJson.parse(decoded);
     }
 
     this.getTokenExpirationDate = function(token) {
-      var decoded;
-      decoded = this.decodeToken(token);
+      var decoded = this.decodeToken(token);
 
       if(typeof decoded.exp === "undefined") {
         return null;
