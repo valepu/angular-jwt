@@ -27,7 +27,7 @@
         throw new Error('Cannot decode the token');
       }
 
-      return angular.fromJson.parse(decoded);
+      return angular.fromJson(decoded);
     }
 
     this.getTokenExpirationDate = function(token) {

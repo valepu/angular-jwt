@@ -7,6 +7,10 @@
     "name": "Martin Gontovnikas",
     "email": "martin@gon.to"
   },
+  "scripts": {
+    "install": "bower install",
+    "test": "gulp test-src"
+  },
   "dependencies": {},
   "devDependencies": {
     "karma-mocha-reporter": "^0.3.1",
