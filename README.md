@@ -138,13 +138,13 @@ angular.module('app', ['angular-jwt'])
 ````js
 angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function(config) {
+  jwtInterceptorProvider.tokenGetter = ['config', function(config) {
     if (config.url.indexOf('http://auth0.com') === 0) {
       return localStorage.getItem('auth0.id_token');
     } else {
       return localStorage.getItem('id_token');
     }
-  }
+  }];
   $httpProvider.interceptors.push('jwtInterceptor');
 })
 .controller('Controller', function Controller($http) {
@@ -164,7 +164,7 @@ As sometimes we need to get first the `id_token` in order to send it, we can ret
 ````js
 angular.module('app', ['angular-jwt'])
 .config(function Config($httpProvider, jwtInterceptorProvider) {
-  jwtInterceptorProvider.tokenGetter = function(jwtHelper, $http) {
+  jwtInterceptorProvider.tokenGetter = ['jwtHelper', '$http', function(jwtHelper, $http) {
     var idToken = localStorage.getItem('id_token');
     var refreshToken = localStorage.getItem('refresh_token');
     if (jwtHelper.isTokenExpired(idToken)) {
@@ -186,7 +186,7 @@ angular.module('app', ['angular-jwt'])
     } else {
       return idToken;
     }
-  }
+  }];
   $httpProvider.interceptors.push('jwtInterceptor');
 })
 .controller('Controller', function Controller($http) {
