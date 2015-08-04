@@ -113,6 +113,8 @@ angular.module('app', ['angular-jwt'])
 
 ### Not sending the JWT for template requests
 
+The `tokenGetter` method can have a parameter `config` injected by angular-jwt. This parameter is the configuration object of the current request.
+
 By default the interceptor will send the JWT for all HTTP requests. This includes any `ng-include` directives or 
 `templateUrls` defined in a `state` in the `stateProvider`. If you want to avoid sending the JWT for these requests you
 should adapt your `tokenGetter` method to fit your needs. For example:
